@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+    <div class="container-fuild position-relative z-0 text-center" style="
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),url('{% static 'zadaca/painting.jpg' %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            padding: 15%;
+            width: 100%;
+            margin-top: -57px;
+            ">
+        <p class="display-1 text-white fw-bold">
+            Upcoming Events
+        </p>
+    </div>
+
+    <div class="container-fluid p-5 bg-dark">
+    <div class="d-flex justify-content-end">
+        <a href="/add" class="btn bg-warning-subtle mb-5 fw-bold text-dark">Add new event</a>
+    </div>
+        <div class="row">
+
+            {% for e, a in exhibitions %}
+                <div class="col-3 d-flex align-self-stretch">
+                <div class="card rounded-0" style="width: 18rem;">
+                    {% if a %}
+                        <img src="{{ a.image.url }}" class="card-img-top" alt="..." style="height: 15rem">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ e.title }}</h5>
+                        <p class="card-text">{{ e.description }}</p>
+                        <a href="#" class="btn btn-primary">{{ a.artist.name }}</a>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
